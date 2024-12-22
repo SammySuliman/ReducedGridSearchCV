@@ -12,25 +12,25 @@ The algorithm then begins by iterating through the first entry of the top layer 
 
 In order to reduce time spent searching for a better performing model after the current model plateaues (achieving roughly the same performance for each value after a certain point), we add a plateau threshold of 0.05. Each subsequent model must achieve performance better than the current best performing model by greater than the plateau threshold.
 
-VALIDATION: \\
-Example 1: \\
-with regular GridSearchCV: \\
-Accuracy (on training): 0.98 \\
-Accuracy (on testing): 1.0 \\
+VALIDATION: \
+Example 1: \
+with regular GridSearchCV: \
+Accuracy (on training): 0.98 \
+Accuracy (on testing): 1.0 \
 Elapsed time: 264.8235182762146
 
-with ReducedGridSearchCV: \\
-Accuracy (on training): 0.95 \\
-Accuracy (on testing): 1.0 \\
+with ReducedGridSearchCV: \
+Accuracy (on training): 0.95 \
+Accuracy (on testing): 1.0 \
 Elapsed time: 1.8074696063995361
 
-Example 2: \\
-with regular GridSearchCV: \\
-Accuracy (on training): 0.912 \\
-Accuracy (on testing): 0.905 \\
+Example 2: \
+with regular GridSearchCV: \
+Accuracy (on training): 0.912 \
+Accuracy (on testing): 0.905 \
 Elapsed time: 20.62173557281494
 
-with ReducedGridSearchCV: \\
-Accuracy (on training): 0.910 \\
-Accuracy (on testing): 0.92 \\
+with ReducedGridSearchCV: \
+Accuracy (on training): 0.910 \
+Accuracy (on testing): 0.92 \
 Elapsed time: 10.864146947860718 
