@@ -66,7 +66,7 @@ def fracturing2(params, nums):
         index += 1
     return params
 
-def search_best_params(new_param_grid, estimator, param_keys, downtrend_limit, cv, scoring,
+def search_best_params(X, y, new_param_grid, estimator, param_keys, downtrend_limit, cv, scoring,
                        best_score=-np.inf, best_params=None, downtrend=0, plateau_threshold=0.05):
     
     if type(new_param_grid[0]) == tuple:
@@ -105,9 +105,9 @@ def search_best_params(new_param_grid, estimator, param_keys, downtrend_limit, c
         if downtrend > downtrend_limit:
             #print('is this the one?')
             optimized_param_grid = new_param_grid[index - downtrend_limit - 1]
-            return search_best_params(optimized_param_grid, estimator, param_keys, downtrend_limit,
+            return search_best_params(X, y, optimized_param_grid, estimator, param_keys, downtrend_limit,
                                       cv, scoring, best_score, best_params)
     else:
         optimized_param_grid = new_param_grid[-1]
-        return search_best_params(optimized_param_grid, estimator, param_keys, downtrend_limit,
+        return search_best_params(X, y, optimized_param_grid, estimator, param_keys, downtrend_limit,
                                   cv, scoring, best_score, best_params)

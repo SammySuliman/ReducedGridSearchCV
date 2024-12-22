@@ -40,9 +40,10 @@ class ReducedGridSearchCV:
         values, keys, nums = sort_params(self.param_grid)
         combinations = list(itertools.product(*values))
         new_param_grid = fracturing2(combinations, nums)
-        best_param_vals, best_scores = search_best_params(new_param_grid, self.estimator, keys, self.downtrend_limit, self.cv, self.scoring)
+        best_param_vals, best_scores = search_best_params(X, y, new_param_grid, self.estimator, keys, self.downtrend_limit,
+                                                          self.cv, self.scoring)
         
-        self.best_score_ = best_score
+        self.best_score_ = best_scores
         self.best_params_ = dict(zip(keys, best_param_vals))
 
         # Train the final model with the best parameters
@@ -51,6 +52,6 @@ class ReducedGridSearchCV:
 
         return self
 
-    def predict(self, X, Y):
+    def predict(self, X):
         """Make predictions with the best estimator."""
         return self.best_estimator_.predict(X)

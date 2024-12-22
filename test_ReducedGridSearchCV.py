@@ -39,17 +39,27 @@ def test1():
 
     print('Elapsed time: ', end - start)
     print('best params', grid_search.best_params_)
-    print('best score', grid_search.best_score_)
+    print('best score (training)', grid_search.best_score_)
+
+    # Evaluate the best model
+    best_model = grid_search.best_estimator_
+    y_pred = best_model.predict(X_test)
+    print("Test set accuracy: ", accuracy_score(y_test, y_pred))
 
     # Perform timed modified grid search
     start = time.time()
     reduced_grid_search = ReducedGridSearchCV(estimator=model, param_grid=param_grid, cv=5)
-    reduced_grid_search.fit(X, y)
+    reduced_grid_search.fit(X_train, y_train)
     end = time.time()
 
     print('Elapsed time: ', end - start)
     print('best params', reduced_grid_search.best_params_)
-    print('best score', reduced_grid_search.best_score_)
+    print('best score (training)', reduced_grid_search.best_score_)
+
+    # Evaluate the best model
+    best_model = reduced_grid_search.best_estimator_
+    y_pred = best_model.predict(X_test)
+    print("Test set accuracy: ", accuracy_score(y_test, y_pred))
 
 def test2():
 
@@ -73,8 +83,9 @@ def test2():
     end = time.time()
 
     # Best parameters and model performance
-    print("Best parameters found: ", grid_search.best_params_)
     best_model = grid_search.best_estimator_
+    print('best params', grid_search.best_params_)
+    print('best score (training)', grid_search.best_score_)
 
     # Evaluate the best model
     y_pred = best_model.predict(X_test)
@@ -84,13 +95,14 @@ def test2():
 
     # Perform ReducedGridSearchCV
     start = time.time()
-    grid_search2 = ReducedGridSearchCV(estimator=mlp, param_grid=param_grid, cv=3)
-    grid_search2.fit(X_train, y_train)
+    reduced_grid_search = ReducedGridSearchCV(estimator=mlp, param_grid=param_grid, cv=3)
+    reduced_grid_search.fit(X_train, y_train)
     end = time.time()
 
     # Best parameters and model performance
-    print("Best parameters found: ", grid_search2.best_params_)
-    best_model = grid_search2.best_estimator_
+    best_model = reduced_grid_search.best_estimator_
+    print('best params', reduced_grid_search.best_params_)
+    print('best score (training)', reduced_grid_search.best_score_)
 
     # Evaluate the best model
     y_pred = best_model.predict(X_test)
